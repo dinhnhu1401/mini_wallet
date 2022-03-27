@@ -9,7 +9,7 @@ import uuid
 # Internal modules
 from decorator import validate_header_decorator, validate_body_decorator
 from static import url_init, url_wallet, url_deposits, url_withdrawals
-from util import is_enabled_wallet
+from util import is_enabled_wallet, is_initialized_wallet
 
 app = Flask(__name__)
 token_dict = {}
@@ -49,6 +49,11 @@ def api_v1_wallet_post():
     # POST Enable my wallet
     rval = {}
     token = request.headers['Authorization'].split()[1]
+
+    if not is_initialized_wallet(token, token_dict):
+        rval['status'] = 'fail'
+        rval['data'] = {'error': 'This wallet need to be initialized first.'}
+        return rval, status.HTTP_400_BAD_REQUEST
 
     if is_enabled_wallet(token, active_wallets):
         rval['status'] = 'fail'

@@ -1,6 +1,7 @@
 ##############################################################################
 # This file performed how the project can be manually tested.
 # You can leverage it as a reference for your own test cases.
+# Using Python with requests module
 ##############################################################################
 
 # External modules
@@ -58,6 +59,9 @@ if __name__ == '__main__':
     header_wrong = {
         'Authorization': 'invalid_token'
     }
+    header_wrong_2 = {
+        'Authorization': 'Token invalid_token'
+    }
     # The request body for method PATCH
     body = {'is_disabled': 'true'}
     body_uper = {'is_disabled': 'True'}
@@ -72,6 +76,10 @@ if __name__ == '__main__':
     # # Reason: This wallet is already enabled before.
     # # Mess: "Already enabled"
     make_request('POST', url_wallet, headers=header_1)
+
+    # # Case 3: Fail - POST
+    # # Mess: "This wallet need to be initialized first."
+    make_request('POST', url_wallet, headers=header_wrong_2)
 
     # # Case 3: Fail - POST
     # # Reason: Invalid token / empty header

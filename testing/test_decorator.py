@@ -22,7 +22,5 @@ class TestDecorator(unittest.TestCase):
         f1 = MagicMock(return_value={'field1': '1'}, __name__='test')
         f2 = validate_body_decorator(f1)
 
-
-
 if __name__ == '__main__':
     unittest.main()

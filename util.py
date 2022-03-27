@@ -43,6 +43,13 @@ def validate_body(form, body_fields):
 def is_enabled_wallet(token, active_wallets):
     return True if token in active_wallets.keys() else False
 
+def is_initialized_wallet(token, token_dict):
+    return True if token in token_dict.keys() else False
+
+##############################################################################
+# ONLY FOR MANUAL TESTING
+##############################################################################
+
 def make_request(method, api, data={}, headers={}):
     url = "http://localhost:5000" + api
     response = requests.request(method=method, url=url, data=data, headers=headers)
