@@ -16,16 +16,24 @@ https://documenter.getpostman.com/view/8411283/SVfMSqA3?version=latest
 │   │   ├── test_util.py        >>> nosetest\
 │   │   ├── test_decorator.py   >>> nosetest\
 │   ├── img\
+│   ├── .venv\
 │   ├── .gitignore\
 │   └── README.md\
 
 
 ## Setup environment
 
+You should create a virtual environment for this project. 
+You can refer to this image depending on your OS.
+
+![env](./img/env.PNG)
+
 ```
-git clone git@github.com:dinhnhu1401/mini_wallet.git
+git clone https://github.com/dinhnhu1401/mini_wallet.git
 cd mini_wallet
-# Setup environment
+python -m venv .venv # Create a virtual environment for my PC using Window
+.\.venv\Scripts\activate.bat # Activate this environment
+python -m pip install -r requirement.txt # Install all dependencies
 python main.py # Running on localhost, port 5000
 ```
 It should lool like:
@@ -41,6 +49,8 @@ These files below performed how the project can be manually tested.
 You can leverage it as a reference for your own test cases.
 
 ```
+cd mini_wallet
+.\.venv\Scripts\activate.bat # Activate this environment
 cd testing
 python test.py # Using Python with requests module
 ./test.sh      # Using Linux with curl command
@@ -55,6 +65,7 @@ You can check each request and response easier if using Python Script:
 I provide the way to run nosetest manually
 
 ```
+cd mini_wallet
 cd testing
 python test_util.py # For short output
 python test_decorator.py # For short output
